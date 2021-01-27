@@ -1,0 +1,87 @@
+<div class="header bg-gradient-danger pad-5 ">
+  <div class="container-fluid">
+   
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bdr5">
+          <form class="form-horizontal" #CurrencyForm="ngForm" novalidate (ngSubmit)="CurrencyForm.valid && saveCurrency()" >
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name ="currency_name"  [(ngModel)]="formModel.currency_name" placeholder="Currency Name" autofocus>
+                        <span class="alert-danger" *ngIf="error['language_name']">{{error['language_name']}}</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <select class="form-control" name="country_name" [(ngModel)]="formModel.country_name">
+                                <option label="Select"></option>          
+                                <option *ngFor="let  cntry of countrylist" [value]="cntry.country_name">{{cntry.country_name}}</option>
+                               
+                                </select>
+                        <span class="alert-danger" *ngIf="error['country_name']">{{error['country_name']}}</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name ="currency_symbol"  [(ngModel)]="formModel.currency_symbol" placeholder="Courency Symbol">
+                        <span class="alert-danger" *ngIf="error['currency_symbol']">{{error['currency_symbol']}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-2">
+                    <div class="form-group text-center">
+                    <button type="submit" class="btn btn-block btn-primary">Save</button>
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+            </div>
+    </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid ">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Currency List</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Sl No</th>
+                <th scope="col">Currency Name</th>
+                <th scope="col">Country Name</th>
+                <th scope="col">Symbol</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor = "let rw of currencylist ; let i = index">
+                <th scope="row">{{i}}</th>
+                <td>{{rw.currency_name}}</td>
+                <td>{{rw.country_name}}</td>
+                 <td>{{rw.currency_smbol}}</td>
+                <td class="text-right"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
